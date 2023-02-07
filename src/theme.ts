@@ -13,7 +13,7 @@ const theme = createTheme(
     typography: {
       fontFamily: ['Encode Sans'].join(','),
       h1: {
-        fontSize: '2rem',
+        fontSize: '3rem',
         fontWeight: 500,
       },
       h2: {

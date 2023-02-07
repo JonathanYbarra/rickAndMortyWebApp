@@ -1,6 +1,7 @@
 import { INavItems } from "./Appbar.types";
-import { CHARACTERS } from "router/routes-list";
+import { CHARACTERS, FAVORITE_CHARACTERS } from "router/routes-list";
 
 export const navItems: INavItems = [
-    { label: 'Characters', path: CHARACTERS }
+    { label: 'Characters', path: CHARACTERS },
+    { label: 'All Favorites', path: FAVORITE_CHARACTERS }
 ];

@@ -1,5 +1,5 @@
 import { baseApi } from "../../baseApi";
-import { ICharacters, IGetCharactersOptions } from "./Character.types";
+import { ICharacter, ICharacters, IGetCharactersOptions } from "./Character.types";
 
 export const charactersApi = baseApi
     .enhanceEndpoints({ addTagTypes: ["Characters"] })
@@ -21,7 +21,15 @@ export const charactersApi = baseApi
                         ]
                         : [{ type: 'Characters', id: 'LIST' }],
             }),
+
+            getCharacter: builder.query<ICharacter, string>({
+                query: (id) => `/character/${id}`
+            }),
+
+            getMultipleCharacters: builder.query<ICharacter[], number[]>({
+                query: (ids) => `/character/${ids}`
+            }),
         })
     });
 
-export const { useGetCharactersQuery } = charactersApi;
+export const { useGetCharactersQuery, useGetCharacterQuery, useGetMultipleCharactersQuery } = charactersApi;

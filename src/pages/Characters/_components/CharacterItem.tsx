@@ -1,7 +1,11 @@
-import { Avatar, Card, CardContent, Typography, CardActions, Button, Box } from "@mui/material"
+import { Avatar, Card, CardContent, Typography, CardActions, Button, Box, Grid } from "@mui/material"
 import { ICharacterProps } from "./Character.types"
+import { useNavigate } from 'react-router-dom';
+import { CHARACTER } from "router";
+import { LikedButton } from "pages/detailCharacter/_components/LikedButton";
 
 export const CharacterItem = ({ character }: ICharacterProps) => {
+    const navigate = useNavigate();
     return (
         <Card sx={{ minHeight: 370 }}>
             <CardContent>
@@ -17,7 +21,10 @@ export const CharacterItem = ({ character }: ICharacterProps) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" color="secondary">Learn More</Button>
+                <Grid container justifyContent="space-between">
+                    <Button size="small" color="secondary" onClick={() => navigate(`${CHARACTER}/${character.id}`)}>Learn More</Button>
+                    <LikedButton id={character.id} />
+                </Grid>
             </CardActions>
         </Card>
     )

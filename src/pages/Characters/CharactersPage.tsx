@@ -9,7 +9,6 @@ import banner from "assets/rick_morty.png";
 import { Pagination } from './_components/Pagination';
 import { Loading } from 'components/Loading';
 
-
 export const CharactersPage = () => {
     const INITIAL_PAGE = 1;
     const [search, setSearch] = useState("");
