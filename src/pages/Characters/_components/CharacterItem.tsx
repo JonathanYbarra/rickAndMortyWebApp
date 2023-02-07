@@ -19,6 +19,10 @@ export const CharacterItem = ({ character }: ICharacterProps) => {
                 <Typography color="text.secondary">
                     {character.species}
                 </Typography>
+
+                <Typography color="text.secondary">
+                    {character.location.name}
+                </Typography>
             </CardContent>
             <CardActions>
                 <Grid container justifyContent="space-between">

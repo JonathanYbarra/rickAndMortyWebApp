@@ -8,7 +8,7 @@ export const charactersApi = baseApi
             getCharacters: builder.query<ICharacters, IGetCharactersOptions>({
                 query: ({ name, page }) => {
                     const params = name ? `name=${name}` : `page=${page}`;
-                    return `/character?${params}`
+                    return `/character?${params}`;
                 },
                 providesTags: (result) =>
                     result
@@ -27,7 +27,7 @@ export const charactersApi = baseApi
             }),
 
             getMultipleCharacters: builder.query<ICharacter[], number[]>({
-                query: (ids) => `/character/${ids}`
+                query: (ids) => (`/character/${ids}`),
             }),
         })
     });

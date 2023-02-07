@@ -6,6 +6,7 @@ export interface ICharacterProps {
 
 export interface ISearchCharacterProps {
     setSearch: (value: string) => void;
+    hasFiltered: boolean;
 }
 
 export interface IPaginationProps {

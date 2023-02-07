@@ -4,17 +4,19 @@ import { Grid, Box } from "@mui/material";
 import { SearchCharacter } from "./_components/SearchCharacter";
 import { CharacterItem } from "./_components/CharacterItem";
 
-import { useGetCharactersQuery } from "app/services/api";
 import banner from "assets/rick_morty.png";
 import { Pagination } from './_components/Pagination';
 import { Loading } from 'components/Loading';
+import { FilterByLocation } from './_components/FilterByLocation';
+import { useCharactersData } from 'hooks';
 
 export const CharactersPage = () => {
     const INITIAL_PAGE = 1;
     const [search, setSearch] = useState("");
     const [currentPage, setCurrentPage] = useState(INITIAL_PAGE);
-    const { data: characters, isLoading } = useGetCharactersQuery({ name: search, page: currentPage });
+    const [filteredIdsByLocation, setFilteredIdsByLocation] = useState<number[]>([]);
 
+    const { charactersData, isLoading, charactersInfo } = useCharactersData(search, currentPage, filteredIdsByLocation);
     if (isLoading) return <Loading />
 
     return (
@@ -25,11 +27,14 @@ export const CharactersPage = () => {
                 </Grid>
             </Grid>
 
-            <SearchCharacter setSearch={setSearch} />
+            <Grid container spacing={2}>
+                <SearchCharacter setSearch={setSearch} hasFiltered={filteredIdsByLocation.length > 1} />
+                <FilterByLocation setFilteredIdsByLocation={setFilteredIdsByLocation} />
+            </Grid>
 
             <Grid container spacing={3}>
                 {
-                    characters?.results.map(character => (
+                    charactersData && charactersData.map(character => (
                         <Grid item xs={12} md={3} key={character.id}>
                             <CharacterItem character={character} key={character.id} />
                         </Grid>
@@ -37,13 +42,17 @@ export const CharactersPage = () => {
                 }
             </Grid>
 
-            <Pagination
-                setCurrentPage={setCurrentPage}
-                initialPage={INITIAL_PAGE}
-                currentPage={currentPage}
-                pages={characters?.info.pages}
-                search={!!search}
-            />
+            {filteredIdsByLocation?.length < 1 &&
+                !isLoading &&
+                (
+                    <Pagination
+                        setCurrentPage={setCurrentPage}
+                        initialPage={INITIAL_PAGE}
+                        currentPage={currentPage}
+                        pages={charactersInfo?.info.pages}
+                        search={!!search}
+                    />
+                )}
         </Box >
     )
 }
