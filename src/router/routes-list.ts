@@ -1,1 +1,1 @@
-export const CHARACTERS = "characters";
+export const CHARACTERS = "/characters";

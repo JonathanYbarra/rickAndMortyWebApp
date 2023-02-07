@@ -28,7 +28,7 @@ export const Navbar = () => {
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar component="nav" position="static">
+            <AppBar component="nav" position="static" variant='elevation'>
                 <Container maxWidth="xl">
                     <Toolbar>
                         <Box sx={{ flexGrow: 1 }}>

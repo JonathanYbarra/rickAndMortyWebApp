@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { Container } from '@mui/material';
 
 export const App = () => {
+    
     return (
         <>
             <Navbar />
