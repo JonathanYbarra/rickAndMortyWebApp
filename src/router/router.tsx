@@ -13,8 +13,8 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to={CHARACTERS} /> },
       { path: CHARACTERS, element: <CharactersPage /> },
-      { path: CHARACTER + '/:id', element: <DetailCharacterPage /> },
       { path: FAVORITE_CHARACTERS, element: <FavoriteCharactersPage /> },
+      { path: CHARACTER + '/:id', element: <DetailCharacterPage /> },
     ],
   },
 ]);
