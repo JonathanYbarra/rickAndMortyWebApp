@@ -1,15 +1,23 @@
-import { ICharacter, useGetMultipleCharactersQuery } from "app/services/api"
-import { useAppSelector } from "app/hooks";
+import { useNavigate } from 'react-router-dom';
 import { selectCharactedLiker } from "slices";
+import { useAppSelector } from "app/hooks";
+
+import { CHARACTER } from 'router/routes-list';
+
+import { ICharacter, useGetMultipleCharactersQuery } from "app/services/api"
 import { Typography, List, ListItem, ListItemText, ListItemAvatar, Avatar, Grid } from '@mui/material';
 import { Loading } from "components/Loading";
 
 export const FavoriteCharactersPage = () => {
+    const navigate = useNavigate();
 
     const charactedLiked = useAppSelector(selectCharactedLiker);
     const { data: characters, isLoading } = useGetMultipleCharactersQuery(charactedLiked);
     const charactersList = characters && (Array.isArray(characters) ? characters : [characters]) as ICharacter[];
-    if (isLoading) return <Loading />
+    
+    const navigateDetailCharacter = (id: number) => navigate(`${CHARACTER}/${id}`);
+
+    if (isLoading) return <Loading />;
 
     return (
         <>
@@ -23,7 +31,7 @@ export const FavoriteCharactersPage = () => {
                     <Grid item xs={12} md={6}>
                         <List>
                             {charactersList?.map(character => (
-                                <ListItem>
+                                <ListItem key={character.id} onClick={() => navigateDetailCharacter(character.id)}>
                                     <ListItemAvatar>
                                         <Avatar src={character.image} />
                                     </ListItemAvatar>

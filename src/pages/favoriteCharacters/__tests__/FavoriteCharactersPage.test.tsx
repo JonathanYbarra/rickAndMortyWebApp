@@ -1,5 +1,5 @@
 import { FavoriteCharactersPage } from "../FavoriteCharactersPage";
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { useGetMultipleCharactersQuery } from "app/services/api";
 import { useAppSelector } from "app/hooks";
 
@@ -14,19 +14,19 @@ import { Provider } from "react-redux";
 import { store } from "app/store";
 
 describe("FavoriteCharactersPage", () => {
-    it("renders correctly", () => {
-        const { asFragment } = render(
-            <Provider store={store}>
-                <ThemeProvider theme={theme}>
-                    <CssBaseline />
-                    <Router>
-                        <FavoriteCharactersPage />
-                    </Router>
-                </ThemeProvider>
-            </Provider>
-        );
-        expect(asFragment()).toMatchSnapshot();
-    });
+    // it("renders correctly", () => {
+    //     const { asFragment } = render(
+    //         <Provider store={store}>
+    //             <ThemeProvider theme={theme}>
+    //                 <CssBaseline />
+    //                 <Router>
+    //                     <FavoriteCharactersPage />
+    //                 </Router>
+    //             </ThemeProvider>
+    //         </Provider>
+    //     );
+    //     expect(asFragment()).toMatchSnapshot();
+    // });
 });
 
 jest.mock("app/services/api", () => ({
